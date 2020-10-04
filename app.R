@@ -65,10 +65,11 @@ server <- shinyServer(function(input, output, session) {
   
   #Next button for easier processing the whole file
   observeEvent(input$nextc,{
+    part = filter(tooltext,type==input$type)
     id = grep(input$cards,
-              names(tooltextlist),
+              part$id,
               fixed=T)
-    nextn = tooltext$id[id+1]
+    nextn = part$id[id+1]
     updateSelectizeInput(session,"cards",selected = nextn)
   })
   
